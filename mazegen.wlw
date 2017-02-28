@@ -169,8 +169,6 @@ fun executemaze{
   };
 }
 
-
-
 fun main{
   # try to read in file name from command line #
   if (argv == [])
@@ -188,8 +186,4 @@ fun main{
       mazearray = call(genarray)(commands);
       call(executemaze)(mazearray);
   };
-
-
-
-
 }
