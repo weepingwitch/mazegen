@@ -1,0 +1,54 @@
+fun readfile{
+  # read in the file #
+  maze = filein(fileloc + argv);
+  # make sure it exists #
+  if (maze != 0)
+  then {
+    # split it by spaces #
+    commands = maze / "\r\n";
+    return commands;
+  }
+  else {
+    print "Error: Maze not found: " + fileloc + argv;
+  };
+}
+
+
+
+fun genarray{
+  commands = argv;
+  # hold the line number #
+  cnum = 0;
+  # hold the curent token #
+  ctoken = "null";
+  while (ctoken != "END")
+  then {
+
+
+
+
+
+  }
+
+}
+
+
+
+
+fun main{
+  # try to read in file name from command line #
+  if (argv == [])
+  then{
+    # if not present, prompt user #
+    mazefile = prompt("Maze filename? ");
+  }
+  else{
+    mazefile = argv[0];
+  };
+  # generate the array of commands #
+  commands = call(readfile)(mazefile);
+  print commands;
+
+
+
+}
