@@ -46,3 +46,6 @@ GOTO 9
 in this case, the user only has one option - meaning that she will have to type in 1, and go to label 9.
 
 have fun making your own mazes!
+
+### sample maze
+look at [mazes/sample.maze](https://github.com/weepingwitch/mazegen/blob/master/mazes/sample.maze) for an example of how to structure a simple maze.
