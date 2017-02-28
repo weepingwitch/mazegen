@@ -1,3 +1,18 @@
 NAME my maze
 LABEL 0
-TEXT "hello!"
+TEXT You are in a room. There is a red door and a blue door.
+CHOICE Red Door
+GOTO 1
+CHOICE Blue Door
+GOTO 2
+LABEL 1
+TEXT You walk through the red door into a red room.
+CHOICE Yay
+GOTO 99
+LABEL 2
+TEXT You walk through the blue door into a blue room.
+CHOICE Yay
+GOTO 99
+LABEL 99
+TEXT The End
+END

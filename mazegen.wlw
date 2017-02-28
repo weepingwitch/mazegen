@@ -10,6 +10,7 @@ fun readfile{
   }
   else {
     print "Error: Maze not found: " + fileloc + argv;
+    return 0;
   };
 }
 
@@ -17,21 +18,105 @@ fun readfile{
 
 fun genarray{
   commands = argv;
+  mazearray = [];
   # hold the line number #
-  cnum = 0;
+  cnum = 0.0;
   # hold the curent token #
   ctoken = "null";
   while (ctoken != "END")
   then {
-
-
-
-
-
-  }
-
+    ctoken = commands[cnum];
+    # check for illegal end of file #
+    if (ctoken == 0)
+    then{
+      ctoken = "END";
+    };
+    # process a name command #
+    if (ctoken[0] == "N")
+    then {
+      # get maze nae #
+      ctokne = ctokne - "NAME ";
+      mazename = ctoken;
+      # move to next line #
+      cnum = cnum + 1;
+      ctoken = commands[cnum];
+    };
+    # process a new label #
+    if (ctoken[0] == "L")
+    then{
+      # get the label number #
+      labelnum = ctoken - "LABEL";
+      # generate a blank label node #
+      labelnode = [];
+      # move to next line #
+      cnum = cnum + 1;
+      ctoken = commands[cnum];
+      # get the label text #
+      text = ctoken - "TEXT ";
+      labelnode[0] = text;
+      # move to next line #
+      cnum = cnum + 1;
+      ctoken = commands[cnum];
+      if (ctoken[0] == "E")
+      then{
+        labelnode[1] = "END";
+      }
+      else{
+        # generate an array of options #
+        options = [];
+        optionnum = 0;
+        # read through options until we hit the next label #
+        while (ctoken[0] != "L")
+        then {
+          # make a blank option #
+          option = [];
+          # read in the choice text #
+          optiontext = ctoken - "CHOICE ";
+          # go to the next line #
+          cnum = cnum + 1;
+          ctoken = commands[cnum];
+          # read in the label to go to #
+          optiongoto = ctoken - "GOTO ";
+          # make the option #
+          option[0] = optiontext;
+          option[1] = optiongoto;
+          # store it in the array #
+          options[optionnum] = option;
+          optionnum = optionnum + 1;
+          # go to the next line #
+          cnum = cnum + 1;
+          ctoken = commands[cnum];
+        };
+        # store the options array in the label node #
+        labelnode[1] = options;
+      };
+      # store the label node in the mazearray #
+      mazearray[labelnum] = labelnode;
+    };
+  };
+  # return the maze array #
+  return mazearray;
 }
 
+
+
+fun executemaze{
+  mazearray = argv;
+  # start at the first label #
+  pointer = 0;
+  running = 1;
+  # loop through labels #
+  while (running)
+  then{
+    # parse the label node #
+    labelnode = mazearray[pointer];
+    desc = labelnode[0];
+    choices = labelnode[1];
+    # print the description #
+    
+
+  };
+}
 
 
 
@@ -47,7 +132,12 @@ fun main{
   };
   # generate the array of commands #
   commands = call(readfile)(mazefile);
-  print commands;
+  if (commands != 0.0)
+  then{
+      mazearray = call(genarray)(commands);
+      call(executemaze)(mazearray);
+  };
+
 
 
 
