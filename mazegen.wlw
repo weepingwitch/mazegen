@@ -93,6 +93,12 @@ fun genarray{
       # store the label node in the mazearray #
       mazearray[labelnum] = labelnode;
     };
+    if (ctoken == "")
+    then{
+      # go to the next line #
+      cnum = cnum + 1;
+      ctoken = commands[cnum];
+    }
   };
   # return the maze array #
   return mazearray;
@@ -101,6 +107,8 @@ fun genarray{
 
 
 fun executemaze{
+  print "(Beginning maze)";
+  print "";
   mazearray = argv;
   # start at the first label #
   pointer = 0;
@@ -108,13 +116,60 @@ fun executemaze{
   # loop through labels #
   while (running)
   then{
+    labelnode = [];
     # parse the label node #
     labelnode = mazearray[pointer];
     desc = labelnode[0];
     choices = labelnode[1];
     # print the description #
-    
-
+    print "";
+    print desc;
+    # check if at the end #
+    if (choices == "END")
+    then{
+      print "";
+      print "(Maze ended)";
+      running = 0;
+    }
+    else{
+      # iterate through choices #
+      choicenum = 0;
+      choicetext = choices[choicenum];
+      while (choicetext != 0.0)
+      then {
+        # print out the choice #
+        choicelabel = choicenum + 1;
+        choicestring = choicelabel + ": " + choicetext[0];
+        print choicestring;
+        choicenum = choicenum + 1;
+        choicetext = choices[choicenum];
+      };
+      choicenum = choicenum - 1;
+      # get the user's answer #
+      userchoice = prompt("? ");
+      # parse where to go #
+      userchoice = userchoice - 1;
+      if (userchoice < 0)
+      then{
+        print "That wasn't a valid choice!";
+        userchoice = -1;
+      };
+      if (userchoice > choicenum)
+      then{
+        print "That wasn't a valid choice!";
+        userchoice = -1;
+      };
+      if (userchoice == -1)
+      then{
+        labelgoto = pointer;
+      }
+      else{
+        labelgoto = choices[userchoice];
+        labelgoto = labelgoto[1];
+      };
+      # go there #
+      pointer = labelgoto;
+    };
   };
 }
 

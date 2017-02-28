@@ -6,13 +6,21 @@ GOTO 1
 CHOICE Blue Door
 GOTO 2
 LABEL 1
-TEXT You walk through the red door into a red room.
-CHOICE Yay
-GOTO 99
+TEXT You walk through the red door into a red room. There is one door.
+CHOICE Go through it.
+GOTO 3
 LABEL 2
-TEXT You walk through the blue door into a blue room.
-CHOICE Yay
-GOTO 99
-LABEL 99
-TEXT The End
+TEXT You walk through the blue door into a blue room. There is one door.
+CHOICE Go through it.
+GOTO 3
+LABEL 3
+TEXT You walk through the door into a green room. There is no exit.
+CHOICE Turn around.
+GOTO 4
+LABEL 4
+TEXT You turn around, only to find out that the door you came in through has disappeared.
+CHOICE Panic
+GOTO 5
+LABEL 5
+TEXT You start to panic, realizing that you will never be able to escape.
 END
