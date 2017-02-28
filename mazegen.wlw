@@ -31,13 +31,9 @@ fun genarray{
     then{
       ctoken = "END";
     };
-    # process a name command #
-    if (ctoken[0] == "N")
-    then {
-      # get maze nae #
-      ctokne = ctokne - "NAME ";
-      mazename = ctoken;
-      # move to next line #
+    if (ctoken == "")
+    then{
+      # go to the next line #
       cnum = cnum + 1;
       ctoken = commands[cnum];
     };
