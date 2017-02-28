@@ -1,5 +1,5 @@
 LABEL 0
-TEXT You are in a room. There is a red door and a blue door.
+TEXT You are in a white room. There is a red door and a blue door.
 CHOICE Red Door
 GOTO 1
 CHOICE Blue Door
