@@ -5,12 +5,12 @@ a very simple text/menu-based maze game engine, written in the [willow programmi
 ## usage
 regular usage:
 ```bash
-python willow.py mazegen.py
+python willow.py mazegen.wlw
 ```
 
 passing in a maze file:
 ```bash
-python willow.py mazegen.py maze_file.maze
+python willow.py mazegen.wlw maze_file.maze
 ```
 
 try passing in "mazes/sample.maze"
